@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    FILE *fp;
+    char bookName[100];
+    char authorName[100];
+    int refNo;
+    int n;
+
+    fp = fopen("book_file.txt", "a");
+
+    printf("How many book records do you want to store? ");
+    scanf("%d", &n);
+    getchar(); // consume newline after scanf
+
+    for (int i = 1; i <= n; i++) {
+
+        printf("\nEnter Book Name: ");
+        fgets(bookName, sizeof(bookName), stdin);
+
+        printf("Enter Author Name: ");
+        fgets(authorName, sizeof(authorName), stdin);
+
+        printf("Enter Reference Number: ");
+        scanf("%d", &refNo);
+        getchar(); // consume newline
+
+        fprintf(fp, "Book Name: %s", bookName);
+        fprintf(fp, "Author Name: %s", authorName);
+        fprintf(fp, "Reference No: %d\n", refNo);
+        fprintf(fp, "------------------------\n");
+    }
+
+    printf("\nData Saved in the file");
+    fclose(fp);
+
+    return 0;
+}
